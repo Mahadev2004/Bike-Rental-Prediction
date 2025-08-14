@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bike Rental Demand Predictor</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-bicycle"></i>
+                    <div class="logo-text">
+                        <h1>Bike Rental Predictor</h1>
+                        <p>Machine Learning for Demand Forecasting</p>
+                    </div>
+                </div>
+                <div class="weather-icons">
+                    <i class="fas fa-sun"></i>
+                    <i class="fas fa-cloud"></i>
+                    <i class="fas fa-thermometer-half"></i>
+                    <i class="fas fa-wind"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="navigation">
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="#" class="nav-link active" data-section="dashboard">
+                    <i class="fas fa-tachometer-alt"></i>Dashboard
+                </a></li>
+                <li><a href="#" class="nav-link" data-section="preprocessing">
+                    <i class="fas fa-database"></i>Data Processing
+                </a></li>
+                <li><a href="#" class="nav-link" data-section="training">
+                    <i class="fas fa-brain"></i>Model Training
+                </a></li>
+                <li><a href="#" class="nav-link" data-section="evaluation">
+                    <i class="fas fa-chart-line"></i>Evaluation
+                </a></li>
+                <li><a href="#" class="nav-link" data-section="prediction">
+                    <i class="fas fa-magic"></i>Prediction
+                </a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="section active">
+                <div class="section-header">
+                    <h2>Project Dashboard</h2>
+                    <p>Comprehensive machine learning project for bike rental demand prediction</p>
+                </div>
+                
+                <div class="project-overview">
+                    <div class="overview-card">
+                        <h3>Project Overview</h3>
+                        <p>This machine learning project predicts daily bike rental demand using weather conditions, seasonal patterns, and temporal features. The system trains multiple algorithms and compares their performance to find the best predictor.</p>
+                        
+                        <div class="features-grid">
+                            <div class="feature-item">
+                                <i class="fas fa-cloud-sun"></i>
+                                <h4>Weather Analysis</h4>
+                                <p>Temperature, humidity, wind speed analysis</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-calendar"></i>
+                                <h4>Temporal Features</h4>
+                                <p>Day, month, weekday patterns</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-robot"></i>
+                                <h4>ML Algorithms</h4>
+                                <p>Linear, Random Forest, Gradient Boosting</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-chart-bar"></i>
+                                <h4>Performance Metrics</h4>
+                                <p>MAE, RMSE, R² evaluation</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="quick-stats">
+                    <h3>Project Statistics</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value" id="stat-samples">0</div>
+                            <div class="stat-label">Data Samples</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="stat-features">0</div>
+                            <div class="stat-label">Features</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="stat-models">0</div>
+                            <div class="stat-label">ML Models</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="stat-accuracy">0.0</div>
+                            <div class="stat-label">Best R² Score</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pipeline Steps -->
+                <div class="pipeline-steps">
+                    <h3>Machine Learning Pipeline</h3>
+                    <div class="steps-container">
+                        <div class="step-card" data-step="preprocessing">
+                            <div class="step-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <h4>Data Preprocessing</h4>
+                            <p>Load dataset, feature engineering, data cleaning</p>
+                            <div class="step-status pending" id="step-preprocessing">
+                                <i class="fas fa-clock"></i>
+                                <span>Pending</span>
+                            </div>
+                        </div>
+                        
+                        <div class="step-card" data-step="training">
+                            <div class="step-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h4>Model Training</h4>
+                            <p>Train multiple regression algorithms</p>
+                            <div class="step-status blocked" id="step-training">
+                                <i class="fas fa-lock"></i>
+                                <span>Blocked</span>
+                            </div>
+                        </div>
+                        
+                        <div class="step-card" data-step="evaluation">
+                            <div class="step-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h4>Model Evaluation</h4>
+                            <p>Compare performance metrics</p>
+                            <div class="step-status blocked" id="step-evaluation">
+                                <i class="fas fa-lock"></i>
+                                <span>Blocked</span>
+                            </div>
+                        </div>
+                        
+                        <div class="step-card" data-step="prediction">
+                            <div class="step-icon">
+                                <i class="fas fa-magic"></i>
+                            </div>
+                            <h4>Make Predictions</h4>
+                            <p>Generate new predictions</p>
+                            <div class="step-status blocked" id="step-prediction">
+                                <i class="fas fa-lock"></i>
+                                <span>Blocked</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Data Preprocessing Section -->
+            <section id="preprocessing" class="section">
+                <div class="section-header">
+                    <h2>Data Preprocessing</h2>
+                    <p>Load and prepare the bike sharing dataset for machine learning</p>
+                </div>
+
+                <div class="action-card">
+                    <div class="card-header">
+                        <h3>Dataset Processing</h3>
+                        <button id="load-data-btn" class="btn btn-primary">
+                            <i class="fas fa-download"></i>
+                            Load & Process Data
+                        </button>
+                    </div>
+                    
+                    <div id="preprocessing-results" class="results-container" style="display: none;">
+                        <div class="results-summary">
+                            <h4>Processing Complete!</h4>
+                            <div class="summary-stats" id="data-summary"></div>
+                        </div>
+                        
+                        <div class="data-preview">
+                            <h4>Dataset Preview</h4>
+                            <div class="table-container">
+                                <table id="data-table">
+                                    <thead id="table-header"></thead>
+                                    <tbody id="table-body"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Model Training Section -->
+            <section id="training" class="section">
+                <div class="section-header">
+                    <h2>Model Training</h2>
+                    <p>Train multiple regression models and compare performance</p>
+                </div>
+
+                <div class="models-overview">
+                    <h3>Available Models</h3>
+                    <div class="models-grid">
+                        <div class="model-card">
+                            <div class="model-icon linear"></div>
+                            <h4>Linear Regression</h4>
+                            <p>Simple linear relationship model</p>
+                            <div class="model-specs">
+                                <span class="spec">Fast</span>
+                                <span class="spec">Interpretable</span>
+                                <span class="spec">Baseline</span>
+                            </div>
+                        </div>
+                        
+                        <div class="model-card">
+                            <div class="model-icon forest"></div>
+                            <h4>Random Forest</h4>
+                            <p>Ensemble of decision trees</p>
+                            <div class="model-specs">
+                                <span class="spec">Robust</span>
+                                <span class="spec">Non-linear</span>
+                                <span class="spec">Feature Importance</span>
+                            </div>
+                        </div>
+                        
+                        <div class="model-card">
+                            <div class="model-icon gradient"></div>
+                            <h4>Gradient Boosting</h4>
+                            <p>Sequential ensemble method</p>
+                            <div class="model-specs">
+                                <span class="spec">High Performance</span>
+                                <span class="spec">Complex</span>
+                                <span class="spec">Accurate</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="training-controls">
+                    <button id="train-models-btn" class="btn btn-primary" disabled>
+                        <i class="fas fa-play"></i>
+                        Start Training
+                    </button>
+                </div>
+
+                <div class="progress-container" id="training-progress" style="display: none;">
+                    <h3>Training Progress</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <p id="training-status">Initializing training...</p>
+                </div>
+
+                <div class="training-results" id="training-results" style="display: none;">
+                    <h3>Training Results</h3>
+                    <div id="model-results"></div>
+                </div>
+            </section>
+
+            <!-- Evaluation Section -->
+            <section id="evaluation" class="section">
+                <div class="section-header">
+                    <h2>Model Evaluation</h2>
+                    <p>Compare model performance using multiple metrics</p>
+                </div>
+
+                <div class="evaluation-container" id="evaluation-container">
+                    <p class="no-data">Train models first to see evaluation results</p>
+                </div>
+
+                <div class="charts-container" id="charts-container" style="display: none;">
+                    <div class="chart-card">
+                        <h4>Model Comparison</h4>
+                        <canvas id="comparison-chart"></canvas>
+                    </div>
+                    
+                    <div class="chart-card">
+                        <h4>Feature Importance</h4>
+                        <canvas id="importance-chart"></canvas>
+                    </div>
+                    
+                    <div class="chart-card">
+                        <h4>Prediction Accuracy</h4>
+                        <canvas id="accuracy-chart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Prediction Section -->
+            <section id="prediction" class="section">
+                <div class="section-header">
+                    <h2>Make Predictions</h2>
+                    <p>Use trained models to predict bike rental demand</p>
+                </div>
+
+                <div class="prediction-container" id="prediction-container">
+                    <p class="no-data">Complete model training to make predictions</p>
+                </div>
+
+                <div class="prediction-form-container" id="prediction-form-container" style="display: none;">
+                    <div class="prediction-form">
+                        <h3>Input Parameters</h3>
+                        <form id="prediction-form">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="season">Season</label>
+                                    <select id="season" required>
+                                        <option value="1">Spring</option>
+                                        <option value="2">Summer</option>
+                                        <option value="3">Fall</option>
+                                        <option value="4">Winter</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="weather">Weather</label>
+                                    <select id="weather" required>
+                                        <option value="1">Clear</option>
+                                        <option value="2">Mist</option>
+                                        <option value="3">Light Rain</option>
+                                        <option value="4">Heavy Rain</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="temperature">Temperature (°C)</label>
+                                    <input type="number" id="temperature" min="-10" max="40" value="20" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="humidity">Humidity (%)</label>
+                                    <input type="number" id="humidity" min="20" max="95" value="60" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="wind">Wind Speed (km/h)</label>
+                                    <input type="number" id="wind" min="0" max="40" value="10" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="model-select">Model</label>
+                                    <select id="model-select">
+                                        <option value="Random Forest">Random Forest</option>
+                                        <option value="Gradient Boosting">Gradient Boosting</option>
+                                        <option value="Linear Regression">Linear Regression</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="weekend">
+                                    <span class="checkmark"></span>
+                                    Weekend
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="holiday">
+                                    <span class="checkmark"></span>
+                                    Holiday
+                                </label>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary btn-large">
+                                <i class="fas fa-magic"></i>
+                                Predict Bike Rentals
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <div class="prediction-result" id="prediction-result" style="display: none;">
+                        <h3>Prediction Result</h3>
+                        <div class="result-display">
+                            <div class="prediction-value">
+                                <span id="prediction-number">0</span>
+                                <small>bikes predicted</small>
+                            </div>
+                            <div class="prediction-details">
+                                <p>Model used: <span id="used-model">-</span></p>
+                                <p>Confidence: <span id="confidence">High</span></p>
+                                <p>Generated: <span id="prediction-time">-</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay" style="display: none;">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p id="loading-text">Loading...</p>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
