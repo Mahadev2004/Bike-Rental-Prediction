@@ -358,6 +358,8 @@ class BikeRentalPredictor:
 
 # Initialize predictor
 predictor = BikeRentalPredictor()
+predictor.preprocess_data()
+predictor.train_models()
 
 @app.route('/')
 def index():
